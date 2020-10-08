@@ -13,7 +13,7 @@ static double _dabs(double val)
 float fourth_root(float val, float epsilon)
 {
     float res;
-    double x = val, y = val, x_prev;
+    double x = 1, y = val, x_prev;
 
     if (val < 0)
         return NAN;

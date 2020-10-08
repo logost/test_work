@@ -1,6 +1,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <errno.h>
 
 #include "fourth_roots.h"
 
@@ -27,6 +28,11 @@ struct test_case_t {
 
 static struct test_case_t test_vec_1 = {1, 16.0};
 static struct test_case_t test_vec_2 = {2, {16.0, 81.0}};
+static struct test_case_t test_vec_max = {1, __FLT_MAX__};
+static struct test_case_t test_vec_0 = {0, 0};
+static struct test_case_t test_vec_09 = {4, 0.6561, 0.00006561, 0.000000006561, 0.0000000000006561};
+static struct test_case_t test_vec_min = {1, __FLT_MIN__};
+struct test_case_t test_vec_neg = {1, -1.0};
 
 static int test_vec(struct test_case_t *tc)
 {
@@ -63,6 +69,10 @@ int tests()
 
     res |= test_vec(&test_vec_1);
     res |= test_vec(&test_vec_2);
+    res |= test_vec(&test_vec_max);
+    res |= test_vec(&test_vec_0);
+    res |= test_vec(&test_vec_09);
+    res |= test_neg(&test_vec_neg);
 
     if (!res)
         printf("Tests PASSED\n");

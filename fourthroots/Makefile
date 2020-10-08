@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=
+CFLAGS=-O3 -ggdb
 LIBS=-lm
 
 DEPS = fourth_roots.h

@@ -1,21 +1,27 @@
 #include <errno.h>
+#include <stdio.h>
+#include <math.h>
 
-static float _fabs(float val)
+static double _dabs(double val)
 {
     if (val < 0)
         return -val;
 
     return val;
 }
+
 float fourth_root(float val, float epsilon)
 {
     float res;
-    float x, x_prev;
+    double x = val, y = val, x_prev;
+
+    if (val < 0)
+        return NAN;
 
     do {
         x_prev = x;
-        x = 1/4*(3*x  + val/(x*x*x));
-    } while (_fabs(x - x_prev) > epsilon);
+        x = (x_prev + x_prev + x_prev + y / (x_prev * x_prev * x_prev)) * 0.25 ;
+    } while (_dabs(x - x_prev) > epsilon);
 
     res = x;
 
@@ -29,6 +35,9 @@ int compute_fourth_roots(float *in, float *out, unsigned int len, float epsilon)
 
     if (!in || !out)
         return -EINVAL;
+
+    if (!len)
+        return 0;
 
     do {
         *out = fourth_root(*in, epsilon);

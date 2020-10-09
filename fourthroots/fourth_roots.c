@@ -17,6 +17,8 @@ float fourth_root(float val, float epsilon)
 
     if (val < 0)
         return NAN;
+    if (val == 0.f)
+        return 0.f;
 
     do {
         x_prev = x;

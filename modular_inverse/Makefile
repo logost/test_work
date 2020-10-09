@@ -2,8 +2,8 @@ CC=gcc
 CFLAGS=-O3 -ggdb
 LIBS=-lm
 
-DEPS = modular_inverse.h
-OBJ = main.o modular_inverse.o 
+DEPS = modular_inverse.h test.h
+OBJ = main.o modular_inverse.o test.o 
 
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)

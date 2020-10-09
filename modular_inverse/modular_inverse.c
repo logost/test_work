@@ -1,7 +1,6 @@
 #include <stdio.h>
+#include <stdint.h>
 #include "modular_inverse.h"
-
-/* https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm */
 
 uint32_t inverse(uint32_t a, uint32_t n_prime)
 {
